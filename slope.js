@@ -2,24 +2,24 @@ function vector(x,y){
     this.x = x;
     this.y = y;
 }
-var start, end;
+let start, end;
 function slope(){
     this.vectors = new Array();
 	this.upward = false;
 	//this.back = new Image();
 	//this.back.src = "imgs/brick.png"
 	this.update = function(p){
-        var longestSide = 0;
-        var slope = new vector(1,0);
-        var firstVector = this.vectors[0];
+        let longestSide = 0;
+        let slope = new vector(1,0);
+        let firstVector = this.vectors[0];
 
-        for (var v = 1; v < this.vectors.length; v++){
-            var distance = Math.sqrt(Math.pow(this.vectors[v].x - firstVector.x, 2) +Math.pow(this.vectors[v].y - firstVector.y, 2));
+        for (let v = 1; v < this.vectors.length; v++){
+            let distance = Math.sqrt(Math.pow(this.vectors[v].x - firstVector.x, 2) +Math.pow(this.vectors[v].y - firstVector.y, 2));
             if(distance > longestSide){
                 longestSide = distance;
                 start = firstVector;
                 end = this.vectors[v];
-                var unhill = (this.vectors[v].y - firstVector.y) / (this.vectors[v].x - firstVector.x);
+                let unhill = (this.vectors[v].y - firstVector.y) / (this.vectors[v].x - firstVector.x);
                 slope.x = ((this.vectors[v].x - firstVector.x) / distance);
                 slope.y = ((this.vectors[v].y - firstVector.y) / distance);
 				if(slope.x > 0){
@@ -28,7 +28,7 @@ function slope(){
 				slope.x *=  unhill;
 				slope.y *=  unhill;
             }
-            var index = v;
+            let index = v;
             if(index == this.vectors.length - 1 - 1){
                 index = 0;    
             }
@@ -46,10 +46,10 @@ function slope(){
     }
     this.checkCollision = function(s,e,rx,rx2,ry,ry2)
 	{
-		var l = rx;
-		var r = rx2;
-		var t = ry;
-		var b = ry2;
+		let l = rx;
+		let r = rx2;
+		let t = ry;
+		let b = ry2;
 		return this.isCollided(e.x,e.y,s.x,s.y,l,r,t,b);
 
 	}
@@ -58,20 +58,20 @@ function slope(){
 	{
 		s = start;
 		e = end;
-		var l = rx;
-		var r = rx2;
-		var t = ry;
-		var b = ry2;
+		let l = rx;
+		let r = rx2;
+		let t = ry;
+		let b = ry2;
 		return this.isCollided(e.x,e.y,s.x,s.y,l,r,t,b);
 
 	}
  
     this.isCollided = function(x0,y0,x1,y1,l,r,t,b)
     {
-        var m = (y1-y0) / (x1-x0);
-        var c = y0 -(m*x0);
-        var top_intersection;
-        var bottom_intersection;
+        let m = (y1-y0) / (x1-x0);
+        let c = y0 -(m*x0);
+        let top_intersection;
+        let bottom_intersection;
         if(m > 0)
         {
            top_intersection = (m*l  + c);
@@ -82,8 +82,8 @@ function slope(){
            top_intersection = (m*r  + c);
            bottom_intersection = (m*l  + c);
         }
-        var toptrianglepoint;
-        var bottomtrianglepoint;
+        let toptrianglepoint;
+        let bottomtrianglepoint;
         if(y0<y1)
         {
            toptrianglepoint = y0;
@@ -95,8 +95,8 @@ function slope(){
            bottomtrianglepoint = y0;
         }
 
-        var topoverlap;
-        var botoverlap;
+        let topoverlap;
+        let botoverlap;
 
         topoverlap = (top_intersection>toptrianglepoint ? top_intersection : toptrianglepoint);
         botoverlap = (bottom_intersection<bottomtrianglepoint ? bottom_intersection : bottomtrianglepoint);
@@ -110,7 +110,7 @@ function slope(){
             ctx.lineTo(this.vectors[v].x,this.vectors[v].y);
         }
         ctx.closePath();/*
-		var pat=ctx.createPattern(this.back,"repeat");
+		let pat=ctx.createPattern(this.back,"repeat");
         ctx.fillStyle = pat;
         ctx.fill();
 		ctx.strokeStyle = "#37F";

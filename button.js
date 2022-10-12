@@ -5,7 +5,7 @@ function button(t,x,y,e){
 	this.y = y;
 	this.t = t;
 	this.isClicked = function(x1,y1){
-		var h = 26;
+		let h = 26;
 		return (x1 >= this.x - this.titleCenter && y1 >= this.y - h && x1 <= this.x - this.titleCenter + this.w && y1 <= this.y);
 	}
 	this.draw= function(ctx){

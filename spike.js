@@ -10,8 +10,8 @@ function spike(x,y,w,h){
     this.update = function(){
     }
 	this.isColliding = function(x,y,x2,y2){
-        var collided = false;
-        var buffer = 15;
+        let collided = false;
+        let buffer = 15;
         if(!(this.x > x2 - buffer|| 
            this.x + this.w < x + buffer || 
            this.y > y2 - buffer ||
@@ -30,7 +30,7 @@ function spike(x,y,w,h){
         }
 		return false;
     }
-	//var degrees  = 0;
+	//let degrees  = 0;
     this.draw = function(ctx){
 		/*ctx.save();
 		ctx.translate(this.x + (this.w / 2), this.y + (this.h / 2));

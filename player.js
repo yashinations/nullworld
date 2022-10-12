@@ -1,4 +1,4 @@
-var sprite_width = 20;
+let sprite_width = 20;
 function player(x,y,w,h){
     this.x = x;
     this.y = y;
@@ -14,12 +14,12 @@ function player(x,y,w,h){
 	this.jumpHold = false;
     this.hitCeiling = false;
     this.floorY = -1;
-    this.gravity = 2;
-    this.jumpStrength = 1;
+    this.gravity = 5;
+    this.jumpStrength = 5;
 	this.jumpTimer = 0;
-    this.maxJumpTimer = 40;
+    this.maxJumpTimer = 10;
 	this.prevJumpHold = false;
-    this.vel = 1;
+    this.vel = 3;
     this.prevX = x;
     this.prevY = y;
 	this.left = false;
@@ -35,7 +35,7 @@ function player(x,y,w,h){
 	this.dead = false;
 	this.deader = false;
 	this.pause = false;
-	var that = this;
+	let that = this;
 	this.reset = function(){
 		this.dead = true;
 	}
@@ -79,7 +79,7 @@ function player(x,y,w,h){
 		}
 		if(!this.dead && !this.deader){
 			this.jumpHold = false;
-			var toDelete = "";
+			let toDelete = "";
 			this.moving = false;
 			for(k in keys){
 				switch (keys[k]){
@@ -187,7 +187,7 @@ function player(x,y,w,h){
 			}
 		}
 	}
-	var degrees = 0;
+	let degrees = 0;
 	this.deathAnimation = function(ctx){
 		
 	}
@@ -215,7 +215,7 @@ function player(x,y,w,h){
 				this.spriteX = 0;
 			}
 		}*/
-		var x_offset = 0;
+		let x_offset = 0;
 		ctx.drawImage(this.currImg,this.spriteX, 0,this.w, this.h, this.x,this.y,this.w,this.h);//drawImage(this.currImg,this.spriteX,0,sprite_width,this.currImg.height,this.x,this.y + y_offset,this.w,this.h + h_offset);	
     }
 }

@@ -62,7 +62,7 @@ function enemy(x,y,w,h){
         }
     }
 	this.isColliding = function(x,y,x2,y2){
-        var collided = false;
+        let collided = false;
         if(!(this.x > x2 || 
            this.x + this.w < x || 
            this.y > y2 ||

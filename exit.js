@@ -16,7 +16,7 @@ function exit(x,y,w,h){
         ctx.drawImage(this.tile,0,0,50, 50, this.x, this.y, this.w,this.h);
     }
     this.isColliding = function(x,y,x2,y2){
-        var collided = false;
+        let collided = false;
         if(!(this.x + 12 > x2 || 
            this.x - 12 + this.w < x || 
            this.y +12 > y2 ||

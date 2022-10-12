@@ -10,6 +10,7 @@ function platform(x,y,w,h){
 	this.hitRight = false;
 	this.tile = new Image();
 	this.tile.src = "imgs/tile.png";
+	this.vel = 2;
     this.update = function(p){
 	   if(p.pause){
 		   return;
@@ -21,17 +22,17 @@ function platform(x,y,w,h){
 		   this.left = true;
 	   }
 	   if(this.left){
-		   this.x--;
+		   this.x -= this.vel;
 	   }
 	   else{
-		   this.x++;
+		   this.x += this.vel;
 	   }
 	   if(this.playerStanding){
 		   if(this.left){
-			   p.x--;
+			   p.x -= this.vel;
 		   }
 		   else{
-			   p.x++;
+			   p.x += this.vel;
 		   }
 	   }
     }
@@ -39,8 +40,8 @@ function platform(x,y,w,h){
        ctx.drawImage(this.tile, this.x,this.y,this.w,this.h);
     }
     this.setCollided = function(p,x,y,x2,y2){
-        var xBuffer = 5;
-		var yBuffer = 5;
+        let xBuffer = 5;
+		let yBuffer = 5;
         if(this.isColliding(x + xBuffer,y - yBuffer,x2 - xBuffer,y + yBuffer)){
             this.playerStanding = false;
             p.hitCeiling = true;
@@ -69,7 +70,7 @@ function platform(x,y,w,h){
         }
     }
     this.isColliding = function(x,y,x2,y2){
-        var collided = false;
+        let collided = false;
         if(!(this.x > x2 || 
            this.x + this.w < x || 
            this.y > y2 ||

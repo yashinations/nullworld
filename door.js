@@ -15,8 +15,8 @@ function door(x,y,w,h,r){
 		ctx.fillRect(this.x,this.y,this.w,this.h);//drawImage(this.tile,0,0,this.w,this.h,this.x,this.y,this.w,this.h);
     }
     this.setCollided = function(p,x,y,x2,y2){
-        var xBuffer = 5;
-		var yBuffer = 5;
+        let xBuffer = 5;
+		let yBuffer = 5;
         if(this.isColliding(x + 15,y - yBuffer,x2 - 15,y + yBuffer)){
             p.hitCeiling = true;
         }
@@ -36,7 +36,7 @@ function door(x,y,w,h,r){
         }
     }
     this.isColliding = function(x,y,x2,y2){
-        var collided = false;
+        let collided = false;
         if(!(this.x > x2 || 
            this.x + this.w < x || 
            this.y > y2 ||

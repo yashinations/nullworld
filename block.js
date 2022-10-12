@@ -16,15 +16,15 @@ function block(x,y,w,h){
         ctx.drawImage(this.tile, this.x,this.y,this.w,this.h);
     }
     this.setCollided = function(obj,x,y,x2,y2){
-        var xBuffer = 5;
-		var yBuffer = 5;
+        let xBuffer = 5;
+		let yBuffer = 5;
 		if(obj.dead){
 			return;
 		}
         if(this.isColliding(x + 15,y - yBuffer,x2 - 15,y + yBuffer)){
             obj.hitCeiling = true;
             //p.floating = false;
-            var yDiff = this.y + this.h - y;
+            let yDiff = this.y + this.h - y;
             if(yDiff > 25){
                 obj.alive = false;
 				obj.dead = true;
@@ -44,7 +44,7 @@ function block(x,y,w,h){
         }
     }
     this.isColliding = function(x,y,x2,y2){
-        var collided = false;
+        let collided = false;
         if(!(this.x > x2 || 
            this.x + this.w < x || 
            this.y > y2 ||

@@ -21,8 +21,8 @@
 "X000000000000000000X" +
 "XXXXXXXXXXXXXXXXXXXX"
 */
-var exit_sound;// = new Audio("mp3/exit.wav");
-var levels = [
+let exit_sound;// = new Audio("mp3/exit.wav");
+let levels = [
 	"XXXXXXXXXXXXXXXXXXXX" +
 	"X000000000000000000X" +
 	"X000000000000000000X" +
@@ -234,18 +234,18 @@ function level(){
 		if(this.levelIndex < levels.length){
 			//localStorage.setItem("last_completed_level",this.levelIndex);
 			this.platforms = new Array();
-			var blockCount = levels[this.levelIndex].length;
-			var blockSize = 25;
-			var rowCount = 20;
+			let blockCount = levels[this.levelIndex].length;
+			let blockSize = 25;
+			let rowCount = 20;
 			this.enemies = new Array();
 			this.trees = new Array();
 			this.blocks = new Array();
 			this.flip = false;
 			this.slopes = null;
 			//p.bullets = [null,null,null,null,null];
-			for(var i = 0; i < blockCount; i++){
+			for(let i = 0; i < blockCount; i++){
 				if(levels[this.levelIndex][i] == 'X'){
-					var b = new block((i % rowCount) * blockSize,parseInt(i / rowCount) * blockSize, blockSize, blockSize);   
+					let b = new block((i % rowCount) * blockSize,parseInt(i / rowCount) * blockSize, blockSize, blockSize);   
 					this.blocks[this.blocks.length] = b;
 				}				
 				else if(levels[this.levelIndex][i] == 'F'){
@@ -260,7 +260,7 @@ function level(){
 				}
 				else if(levels[this.levelIndex][i] == '>'){
 					this.exit = new exit((i % rowCount) * blockSize,parseInt(i / rowCount) * blockSize, blockSize, blockSize);  
-					//var last_completed_level = localStorage.getItem("last_completed_level")
+					//let last_completed_level = localStorage.getItem("last_completed_level")
 					//if(last_completed_level != null && last_completed_level != undefined){
 					//	this.exit.nextLevel = parseInt(last_completed_level) + 1;
 					//}
@@ -297,12 +297,12 @@ function level(){
 					} 
 					this.slopes.vectors[this.slopes.vectors.length] = new vector(((i % rowCount) * blockSize),(parseInt(i / rowCount) * blockSize) + blockSize);
 					if((this.levelIndex == 18 && (i % rowCount) != 1) || (this.levelIndex == 21 && (i % rowCount) != 2)){
-						var b = new levelBlock((i % rowCount) * blockSize,parseInt(i / rowCount) * blockSize, blockSize, blockSize);   
+						let b = new levelBlock((i % rowCount) * blockSize,parseInt(i / rowCount) * blockSize, blockSize, blockSize);   
 						this.blocks[this.blocks.length] = b;
 					}
 				}
 				else if(!isNaN(parseInt(levels[this.levelIndex][i]))){
-					var height = parseInt(levels[this.levelIndex][i]);
+					let height = parseInt(levels[this.levelIndex][i]);
 					if(height > 0){
 						this.trees[this.trees.length] = new elevator((i % rowCount) * blockSize,parseInt(i / rowCount) * blockSize, blockSize, blockSize * height);
 					}				
@@ -324,9 +324,9 @@ function level(){
 		{
 			return;
 		}
-        var buffer = 50;
+        let buffer = 50;
         this.isCollision(p,this.blocks);
-		var exited = false
+		let exited = false
 		if(this.exit != null){
 			exited = this.exit.checkCollisions(p,p.x, p.y, p.x + p.w, p.y + p.h);				
 			if(exited != null && this.twin == null){
@@ -356,9 +356,9 @@ function level(){
 					this.isCollision(this.enemies[e],this.blocks);
 					this.enemies[e].update();
 					if(!this.enemies[e].hit){
-						var hit = this.enemies[e].checkCollision(p);
+						let hit = this.enemies[e].checkCollision(p);
 
-						var twinHit = false;
+						let twinHit = false;
 						if(this.twin != null){
 							twinHit = this.enemies[e].checkCollision(this.twin);
 						}
@@ -372,7 +372,7 @@ function level(){
 		}
         /*for (b in p.bullets){
         	if(p.bullets[b] != null){
-	            var hit = p.bullets[b].checkCollision(this);
+	            let hit = p.bullets[b].checkCollision(this);
 				if(hit){
 					p.bullets[b].hit = true;
 				}
@@ -385,7 +385,7 @@ function level(){
 					   }
 				}
 	            for (e in this.enemies){
-	                var shot = this.enemies[e].checkCollision(p.bullets[b]);
+	                let shot = this.enemies[e].checkCollision(p.bullets[b]);
 	                if(shot && !p.bullets[b].hit){
 	                    this.enemies[e].shot = true;
 	                    p.bullets[b].hit = true;
@@ -457,8 +457,8 @@ function level(){
 		ctx.globalAlpha  = 1;
     }
     this.getBlocksInRange = function(x,y,x2,y2){
-        var selectBlocks = new Array();
-        var selectBlocksCount = 0;		
+        let selectBlocks = new Array();
+        let selectBlocksCount = 0;		
         for(b in this.blocks){
             if(this.blocks[b].x >= x && this.blocks[b].y >= y && this.blocks[b].x + this.blocks[b].w <= x2 && this.blocks[b].y + this.blocks[b].h <= y2){
                 selectBlocks[selectBlocksCount] = this.blocks[b];

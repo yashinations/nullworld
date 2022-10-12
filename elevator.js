@@ -10,13 +10,14 @@ function elevator(x,y,w,h){
 	this.up = false;
     this.sprite = new Image();
 	this.sprite.src = "imgs/tile.png";
+	this.vel = 2;
     this.update = function(p){  
        if(this.up){
 		   if (this.y >= this.max_y){
 			   this.up = false;
 		   }
 		   else{
-				this.y++;
+				this.y += this.vel;
 		   }
        }
        else{
@@ -24,9 +25,9 @@ function elevator(x,y,w,h){
 			   this.up = true;
 		   }
 		   else{
-			   this.y--;
+			   this.y -= this.vel;
 			   if(this.playerStanding){
-				   p.y--;
+				   p.y -= this.vel;
 			   }
 		   }
        }	
@@ -35,8 +36,8 @@ function elevator(x,y,w,h){
        ctx.drawImage(this.sprite,0, 0, this.w, this.h, this.x, this.y, this.w, this.h);
     }
     this.setCollided = function(p,x,y,x2,y2){
-        var xBuffer = 5;
-		var yBuffer = 5;
+        let xBuffer = 5;
+		let yBuffer = 5;
         if(this.isColliding(x + xBuffer,y - yBuffer,x2 - xBuffer,y + yBuffer)){
             this.playerStanding = false;
             p.hitCeiling = true;
@@ -60,7 +61,7 @@ function elevator(x,y,w,h){
         }
     }
     this.isColliding = function(x,y,x2,y2){
-        var collided = false;
+        let collided = false;
         if(!(this.x > x2 || 
            this.x + this.w < x || 
            this.y > y2 ||

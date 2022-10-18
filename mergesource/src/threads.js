@@ -95,5 +95,13 @@ function(){
 			camera_scroll_y += avatar.gravity;	
 		}
 	}
+	for (o in tile_map) {
+		let current_block = tile_map[o];
+		if (current_block) {
+			if (current_block.behavior) {
+				current_block.behavior(current_block);
+			}
+		}
+	}
 	setTimeout(collision_thread,18);
 }

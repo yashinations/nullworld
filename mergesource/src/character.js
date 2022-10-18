@@ -58,7 +58,7 @@ class character{
 		}
 		//no magic numbers
 		if((!this.lefted && direction < 0) || (!this.righted && direction > 0)){
-				this.x_delta = direction * 2;
+				this.x_delta = direction * 4;
 		}
 		else{
 			this.x_delta = 0;

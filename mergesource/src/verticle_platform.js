@@ -13,15 +13,16 @@ class vertical_platform extends block{
 			that.right = false;
 		}
 		if(that.left){
-			that.rect.y_coord -= 0.3;
+			that.rect.y_coord -= 2;
 		}
 		else{
-			that.rect.y_coord += 0.3;
+			that.rect.y_coord += 2;
 		}	
-		if(collision.overlapping(avatar.bounding_boxes.boxes[ceiling_index],that.rect)){
-			avatar.kill();
-		}
-		else if (collision.overlapping(avatar.bounding_boxes.boxes[floor_index],that.rect) && avatar.floored)
+		//if(collision.overlapping(avatar.bounding_boxes.boxes[ceiling_index],that.rect)){
+		//	avatar.kill();
+		//}
+		//else 
+		if (collision.overlapping(avatar.bounding_boxes.boxes[floor_index], that.rect) && avatar.floored)
 		{			
 			avatar.verticle_ride = that;		
 		}

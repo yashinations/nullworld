@@ -14,7 +14,7 @@ class keyboard_input_singleton{
 		avatar.duck();
 	}
 	jump = function(){
-		if (avatar.floored && avatar.jump_held) {
+		if (avatar.floored && !avatar.jump_held) {
 			avatar.jumping = true;
 		}
 		avatar.jump_hold = true;
@@ -52,11 +52,13 @@ class keyboard_input_singleton{
 	hold_trigger = function(e){
 		keyboard_input.trigger(e.key,"hold");
 	}
-	key_map = {"a":{action:this.left, click:true, release:false, hold: true},
-				"d":{action:this.right, click:true, release:false, hold: true},
-				"w":{action:this.up, click:true, release:false, hold: true},
-				"s":{action:this.duck, click:true, release:false, hold: true},
-				" ": { action: this.jump, click: false, release: false, hold: true},
-				"\n":{action:this.action, click:true, release:false, hold: false}};
+	key_map = {
+		"a": { action: this.left, click: false, release:false, hold: true},
+		"d": { action: this.right, click: false, release:false, hold: true},
+		"w":{action:this.up, click:true, release:false, hold: true},
+		"s":{action:this.duck, click:true, release:false, hold: true},
+		" ": { action: this.jump, click: false, release: false, hold: true},
+		"\n": { action: this.action, click: true, release: false, hold: false }
+	};
 }
 let keyboard_input;

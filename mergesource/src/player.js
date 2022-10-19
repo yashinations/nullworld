@@ -8,6 +8,7 @@ class player extends character{
 	jump_strength = 2;
 	max_jump_timer = 12;
 	jump_timer = 0;
+	jumping = false;
 	constructor(x,y,w,h,img_indexes){
 		super(x,y,w,h,img_indexes);
 		this.init_x = x;

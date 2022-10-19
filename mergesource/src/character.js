@@ -38,7 +38,7 @@ class character{
 		else{
 			 while ((that.rect.y_coord + that.rect.height) % block_size != 0){
 				 if (that === avatar){
-					 camera_scroll_y--;
+					 //camera_scroll_y--;
 				 }
 				--that.rect.y_coord;
 			}

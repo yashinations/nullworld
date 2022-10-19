@@ -94,19 +94,12 @@ function(){
 		avatar.jump_held = avatar.jump_hold;			
 		if (avatar.jumping && avatar.jump_timer <= avatar.max_jump_timer && avatar.jump_hold) {
 			avatar.rect.y_coord -= avatar.jump_strength;
+			//camera_scroll_y -= avatar.gravity;
 			avatar.jump_timer++;
 		}
-		else if (avatar.jump_timer > avatar.max_jump_timer || !avatar.jump_hold) {
-			avatar.jumping = false;
-		}
-		else if (avatar.jumping) {
-			avatar.rect.y_coord -= avatar.gravity;
-		}
-		else if (!avatar.floored) {
-			avatar.rect.y_coord += avatar.gravity;
-		}		
 		else {
 			avatar.jump_timer = 0;
+			avatar.jumping = false;
 			avatar.jump_hold = false;
         }
 	}

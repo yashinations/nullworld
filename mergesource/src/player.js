@@ -3,6 +3,11 @@ class player extends character{
 	alive = true;
 	init_x;
 	init_y;
+	jump_hold = true;
+	jump_held = true;
+	jump_strength = 2;
+	max_jump_timer = 12;
+	jump_timer = 0;
 	constructor(x,y,w,h,img_indexes){
 		super(x,y,w,h,img_indexes);
 		this.init_x = x;

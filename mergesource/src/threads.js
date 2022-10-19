@@ -90,10 +90,25 @@ function(){
 			obj_in_question.floored = floored;
 			obj_in_question.logic_thread(obj_in_question);
 			obj_in_question.bounding_boxes.move();
-		}	
-		if(!avatar.floored){
-			camera_scroll_y += avatar.gravity;	
 		}
+		avatar.jump_held = avatar.jump_hold;			
+		if (avatar.jumping && avatar.jump_timer <= avatar.max_jump_timer && avatar.jump_hold) {
+			avatar.rect.y_coord -= avatar.jump_strength;
+			avatar.jump_timer++;
+		}
+		else if (avatar.jump_timer > avatar.max_jump_timer || !avatar.jump_hold) {
+			avatar.jumping = false;
+		}
+		else if (avatar.jumping) {
+			avatar.rect.y_coord -= avatar.gravity;
+		}
+		else if (!avatar.floored) {
+			avatar.rect.y_coord += avatar.gravity;
+		}		
+		else {
+			avatar.jump_timer = 0;
+			avatar.jump_hold = false;
+        }
 	}
 	for (o in tile_map) {
 		let current_block = tile_map[o];

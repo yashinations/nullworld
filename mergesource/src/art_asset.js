@@ -1,14 +1,20 @@
 let avatar_walk_left = 0;
 let avatar_walk_right = 1;
-let tile = 2;
-let spike = 3;
-let exit = 4;
-let background = 5;
-let enemy_kill_right = 6;
+let tile1 = 2;
+let tile2 = 3;
+let tile3 = 4;
+let tile4 = 5;
+let spike = 6;
+let exit = 7;
+let background = 8;
+let enemy_kill_right = 9;
 let img_srcs = [
 	"imgs/player_walk.png",
 	"imgs/player_walk_flip.png",
-	"imgs/tile.png",
+	"imgs/tile1.png",
+	"imgs/tile2.png",
+	"imgs/tile3.png",
+	"imgs/tile4.png",
 	"imgs/spike.png",
 	"imgs/exit.png",
 	"imgs/background.png"

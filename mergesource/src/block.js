@@ -11,5 +11,6 @@ class block{
 		this.solid = s;
 		//add to available blocks
 		tile_map.push(this);
+		this.spr = new sprite(2 + parseInt((Math.random() * 100) % 4), this);
 	}
 }

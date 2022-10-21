@@ -34,9 +34,10 @@ class renderer_singleton{
 				let b = tile_map[s_itor];
 				if(b.solid){
 					//ctx.drawImage(art_assets.imgs[2],b.rect.x_coord,b.rect.y_coord, b.rect.width,b.rect.height,(b.rect.x_coord * multiplier),(b.rect.y_coord * multiplier) - (camera_scroll_y * multiplier), b.rect.width * multiplier,b.rect.height * multiplier);
-					ctx.fillStyle = "black";
-					ctx.fillRect((b.rect.x_coord * multiplier) - (camera_scroll_x * multiplier),(b.rect.y_coord * multiplier) - (camera_scroll_y * multiplier), b.rect.width * multiplier,b.rect.height * multiplier);
-					ctx.fillStyle = "white";
+					//ctx.fillStyle = "black";
+					ctx.drawImage(b.spr.src_img, (b.rect.x_coord * multiplier) - (camera_scroll_x * multiplier), (b.rect.y_coord * multiplier) - (camera_scroll_y * multiplier), block_size * multiplier, b.rect.height * multiplier);
+					//ctx.fillRect((b.rect.x_coord * multiplier) - (camera_scroll_x * multiplier),(b.rect.y_coord * multiplier) - (camera_scroll_y * multiplier), b.rect.width * multiplier,b.rect.height * multiplier);
+					//ctx.fillStyle = "white";
 				}
 			}
 			last_interval = new Date();

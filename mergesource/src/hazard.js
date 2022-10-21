@@ -5,11 +5,7 @@ class hazard extends block{
 	{
 		super(r,s);		
 		this.draw_rect = r;
-		this.spr = new sprite(art_assets.imgs[2]);
-		this.spr.owner = this;
-	}
-	render(){
-		renderer.draw_sprite(ctx,this.spr)
+		this.spr = new sprite(6,this);
 	}
 	impale = function(){
 		if(collision.overlapping(avatar.bounding_boxes.boxes[floor_index],this.rect)){

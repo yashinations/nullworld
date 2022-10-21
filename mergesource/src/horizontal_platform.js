@@ -13,20 +13,20 @@ class horizontal_platform extends block{
 			that.right = false;
 		}
 		if(that.left){
-			that.rect.x_coord -= 0.3;
+			that.rect.x_coord -= 2;
 		}
 		else{
-			that.rect.x_coord += 0.3;
+			that.rect.x_coord += 2;
 		}
 		let avatar_hit_box = avatar.bounding_boxes.boxes[floor_index];
 		if (collision.overlapping(avatar_hit_box,that.rect) && !avatar.grounded)
 		{
 			if(avatar.x_delta == 0){
 				if(that.left){
-					avatar.x_delta -= 0.3;
+					avatar.x_delta -= 2;
 				}
 				else{
-					avatar.x_delta += 0.3;
+					avatar.x_delta += 2;
 				}
 			}
 		}

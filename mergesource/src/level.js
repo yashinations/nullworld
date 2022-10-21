@@ -34,13 +34,10 @@ class level_singleton{
 			let x = (o % (level_width)) * block_size;
 			let y = parseInt(o / (level_width)) * block_size;
 			let r = new rectangle(x, y, block_size, block_size);
-			let lastx = 0;
-			if (level_map[o] == '0') {
-				lastx = (o % (level_width)) * block_size;
-			}
+			let lastx = x;
 			if (level_map[o] == 'H') {
 				let b = new horizontal_platform(r, true);
-				b.left_max = lastx + block_size + block_size + block_size;
+				b.left_max = lastx;
 				while (level_map[o] != 'X') {
 					lastx = (o % (level_width)) * block_size;
 					o++;
@@ -48,22 +45,13 @@ class level_singleton{
 				b.right_max = lastx;
 			}
 		}
-		let ceiling_heights = []
-		for (let i = 0; i < level_width; i++) {
-			ceiling_heights[i] = block_size;
-		}
 		for (let o in level_map) {
 			let x = (o % (level_width)) * block_size;
 			let y = parseInt(o / (level_width)) * block_size;
 			let r = new rectangle(x, y, block_size, block_size);
-			if (level_map[o] == 'X') {
-				if (ceiling_heights[(o % (level_width))] < y) {
-					ceiling_heights[(o % (level_width))] = y + block_size;
-				}
-			}
 			if (level_map[o] == 'V') {
 				let b = new vertical_platform(r, true);
-				b.left_max = ceiling_heights[(o % (level_width))] + block_size + block_size;
+				b.left_max = y;
 				let x_index = (o % (level_width));
 				while (!(level_map[o] == 'X' && (o % (level_width)) == x_index)) {
 					y = parseInt(o / (level_width)) * block_size;

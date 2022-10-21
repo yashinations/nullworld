@@ -23,7 +23,7 @@ class level_singleton{
 			//add user			
 			if(level_map[o] == 'P'){
 				let indexs = [avatar_walk_left,avatar_walk_right];
-				avatar = new player(x,y - 15,47,47,indexs);
+				avatar = new player(x,y - 15,32,32,indexs);
 			}
 			if (level_map[o] == '^') {
 				let b = new hazard(new rectangle(x, y, block_size * 2, block_size), true);

@@ -6,7 +6,7 @@ class player extends character{
 	jump_hold = true;
 	jump_held = true;
 	jump_strength = 2;
-	max_jump_timer = 12;
+	max_jump_timer = 6;
 	jump_timer = 0;
 	jumping = false;
 	constructor(x,y,w,h,img_indexes){

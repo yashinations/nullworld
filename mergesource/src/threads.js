@@ -1,6 +1,9 @@
 let collision_thread = 
 function(){
-	if(avatar.alive){	
+	if (avatar.alive) {
+		for (q in keyboard_input.queue) {
+			keyboard_input.trigger(keyboard_input.queue[q].key, keyboard_input.queue[q].trigger);
+		}		
 		for (let s in camera.scope_objects){
 			let obj_in_question = camera.scope_objects[s];
 			//make better make all this better

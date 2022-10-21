@@ -18,13 +18,10 @@ class vertical_platform extends block{
 		else{
 			that.rect.y_coord += 2;
 		}	
-		//if(collision.overlapping(avatar.bounding_boxes.boxes[ceiling_index],that.rect)){
-		//	avatar.kill();
-		//}
-		//else 
-		if (collision.overlapping(avatar.bounding_boxes.boxes[floor_index], that.rect) && avatar.floored)
+		if (collision.overlapping(avatar.bounding_boxes.boxes[floor_index], that.rect) && !avatar.jumping)
 		{			
-			avatar.verticle_ride = that;		
+			avatar.verticle_ride = that;
+			avatar.floored = true;
 		}
 		else{
 			avatar.verticle_ride = null;

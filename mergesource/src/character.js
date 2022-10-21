@@ -13,9 +13,10 @@ class character{
 	righted = false;
 	ceilinged = false;
 	floored = false;
-	gravity = 1;
+	gravity = 3;
 	prev_coords;
 	x_delta = 0;
+	verticle_ride = null;
 	constructor(x,y,w,h,img_indexes){
 		this.rect = new rectangle(x,y,w,h);
 		this.prev_coords = new vertex(x,y);
@@ -30,17 +31,18 @@ class character{
 	}
 	logic_thread = function(that){
 		//somehow make self referential, not object specific NO GLOBALS!	
-		if(!that.floored){
+		if (!that.floored && that.verticle_ride == null){
 			that.prev_coords.y_coord = that.rect.y_coord;
 			that.rect.y_coord += that.gravity;
-			//camera_scroll_y += that.gravity;
 		}	
-		else{
-			 while ((that.rect.y_coord + that.rect.height) % block_size != 0){
-				 if (that === avatar){
-					 //camera_scroll_y--;
-				 }
-				--that.rect.y_coord;
+		else {
+			if (that.verticle_ride != null) {
+				that.rect.y_coord = that.verticle_ride.rect.y_coord - that.rect.height;
+			}
+			else {
+				while ((that.rect.y_coord + that.rect.height) % block_size != 0) {
+					--that.rect.y_coord;
+				}
 			}
 		}
 		if(that.x_delta != 0){

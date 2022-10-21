@@ -1,4 +1,5 @@
 class keyboard_input_singleton{
+	queue = [];
 	left = function(){
 		avatar.move(-1);
 	}
@@ -43,22 +44,35 @@ class keyboard_input_singleton{
 			}
 		}
 	}
-	click_trigger = function(e){
-		keyboard_input.trigger(e.key,"click");
+	click_trigger = function(e){		
+		keyboard_input.hold_trigger(e);
 	}
 	release_trigger = function(e){
-		keyboard_input.trigger(e.key,"release");
+		for (q in keyboard_input.queue) {
+			if (keyboard_input.queue[q].key == e.key) {
+				delete keyboard_input.queue[q];
+			}
+		}
 	}
-	hold_trigger = function(e){
-		keyboard_input.trigger(e.key,"hold");
+	hold_trigger = function (e) {
+		let found = false;
+		for (q in keyboard_input.queue) {
+			if (keyboard_input.queue[q].key == e.key) {
+				found = true;
+			}
+		}
+		if (!found) {
+			keyboard_input.queue.push({ key: e.key, trigger: "hold" })
+		}
+		//keyboard_input.trigger(e.key,"hold");
 	}
 	key_map = {
 		"a": { action: this.left, click: false, release:false, hold: true},
 		"d": { action: this.right, click: false, release:false, hold: true},
-		"w":{action:this.up, click:true, release:false, hold: true},
-		"s":{action:this.duck, click:true, release:false, hold: true},
+		"w": { action: this.up, click: false, release: false, hold: false},
+		"s": { action: this.duck, click: false, release: false, hold: false},
 		" ": { action: this.jump, click: false, release: false, hold: true},
-		"\n": { action: this.action, click: true, release: false, hold: false }
+		"\n": { action: this.action, click: false, release: false, hold: false }
 	};
 }
 let keyboard_input;

@@ -60,7 +60,7 @@ class character{
 			this.curr_sprite_index = walk_left;
 		}
 		//no magic numbers
-		if((!this.lefted && direction < 0) || (!this.righted && direction > 0)){
+		if(!((this.lefted && direction < 0) || (this.righted && direction > 0))){
 				this.x_delta = direction * 4;
 		}
 		else{

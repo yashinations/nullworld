@@ -45,7 +45,7 @@ class keyboard_input_singleton{
 		}
 	}
 	click_trigger = function(e){		
-		keyboard_input.hold_trigger(e);
+		//keyboard_input.hold_trigger(e);
 	}
 	release_trigger = function(e){
 		for (let q in keyboard_input.queue) {

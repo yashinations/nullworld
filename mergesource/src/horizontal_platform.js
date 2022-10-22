@@ -19,7 +19,7 @@ class horizontal_platform extends block{
 			that.rect.x_coord += 2;
 		}
 		let avatar_hit_box = avatar.bounding_boxes.boxes[floor_index];
-		if (collision.overlapping(avatar_hit_box,that.rect) && !avatar.grounded)
+		if ((collision.overlapping(avatar_hit_box, that.rect) && !avatar.grounded) || (collision.overlapping(avatar.rect, that.rect) && !collision.overlapping(avatar_hit_box, that.rect)))
 		{
 			if(avatar.x_delta == 0){
 				if(that.left){

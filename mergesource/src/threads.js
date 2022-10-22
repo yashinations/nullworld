@@ -73,7 +73,12 @@ function(){
 					if(obj_in_question.patrol_right){
 						turn_floor = false;
 					}
-				}		
+				}
+
+				if (collision.overlapping(obj_in_question.bounding_boxes.boxes[center_core_index], current_block.rect)) {
+					avatar.alive = false;
+					avatar.live();
+				}
 			}
 			
 			if(obj_in_question !== avatar){

@@ -14,6 +14,7 @@ function(){
 			let turn_floor = true;
 			let saw = false;
 			let kill = false;
+			let grounded = false;
 			for (o in tile_map){
 				let current_block = tile_map[o];
 				if(!current_block.solid){
@@ -56,7 +57,10 @@ function(){
 				}
 				if(collision.overlapping(obj_in_question.bounding_boxes.boxes[floor_index],current_block.rect))
 				{
-					floored = true;			
+					floored = true;
+					if(obj_in_question === avatar && current_block.behavior == null){
+						grounded = true;
+					}
 				}								
 				if(collision.overlapping(obj_in_question.bounding_boxes.boxes[future_left_floor_index],current_block.rect))
 				{
@@ -91,8 +95,9 @@ function(){
 			obj_in_question.lefted = lefted;
 			obj_in_question.righted = righted;
 			obj_in_question.floored = floored;
+			obj_in_question.grounded = grounded;
 			obj_in_question.logic_thread(obj_in_question);
-			obj_in_question.bounding_boxes.move();
+			//obj_in_question.bounding_boxes.move();
 		}
 		avatar.jump_held = avatar.jump_hold;			
 		if (avatar.jumping && avatar.jump_timer <= avatar.max_jump_timer && avatar.jump_hold) {

@@ -5,9 +5,8 @@ let tile2 = 3;
 let tile3 = 4;
 let tile4 = 5;
 let spike = 6;
-let exit = 7;
+let swirl = 7;
 let background = 8;
-let enemy_kill_right = 9;
 let img_srcs = [
 	"imgs/player_walk.png",
 	"imgs/player_walk_flip.png",

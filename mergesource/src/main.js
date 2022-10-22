@@ -11,7 +11,7 @@ class game{
 		document.addEventListener('keypress', keyboard_input.hold_trigger, false);
 		collision = new singleton_collision();
 		//moving temporarily
-		level = new level_singleton();
+		level = new level_singleton(0);
 		//put \/ this somewhere else
 		window.requestAnimationFrame(renderer.render);
 		setTimeout(collision_thread,18);

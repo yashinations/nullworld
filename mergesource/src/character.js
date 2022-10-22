@@ -49,7 +49,8 @@ class character{
 			that.prev_coords.x_coord = that.rect.x_coord;
 			that.rect.x_coord += that.x_delta;	
 		}
-		that.x_delta = 0;		
+		that.x_delta = 0;
+		that.bounding_boxes.move();
 	}	
 	move = function(direction){	
 		if(direction < 0){

@@ -48,7 +48,7 @@ class keyboard_input_singleton{
 		keyboard_input.hold_trigger(e);
 	}
 	release_trigger = function(e){
-		for (q in keyboard_input.queue) {
+		for (let q in keyboard_input.queue) {
 			if (keyboard_input.queue[q].key == e.key) {
 				delete keyboard_input.queue[q];
 			}
@@ -56,7 +56,7 @@ class keyboard_input_singleton{
 	}
 	hold_trigger = function (e) {
 		let found = false;
-		for (q in keyboard_input.queue) {
+		for (let q in keyboard_input.queue) {
 			if (keyboard_input.queue[q].key == e.key) {
 				found = true;
 			}

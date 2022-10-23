@@ -11,6 +11,12 @@ class exit extends block{
         if (current_index >= level_map.length) {
             current_index = 0;
         }
+        tile_map = [];
+        camera.scope_objects = [];
         level = new level_singleton(current_index);
-    }   
+    }
+	behavior = function (that) {
+        if (collision.overlapping(avatar.rect, that.rect))
+            that.advance();
+		}
 }

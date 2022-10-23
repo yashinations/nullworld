@@ -7,6 +7,7 @@ let tile4 = 5;
 let spike = 6;
 let swirl = 7;
 let background = 8;
+let background_left = 8;
 let img_srcs = [
 	"imgs/player_walk.png",
 	"imgs/player_walk_flip.png",
@@ -16,7 +17,8 @@ let img_srcs = [
 	"imgs/tile4.png",
 	"imgs/spike.png",
 	"imgs/exit.png",
-	"imgs/background.png"
+	"imgs/background.png",
+	"imgs/backgroundleft.png"
 ]
 class art_asset_singleton{
 	imgs = [];

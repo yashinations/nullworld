@@ -1,6 +1,7 @@
 let tile_map = [];
 class level_singleton{
 	current_index = 0;
+	left_input_only = false;
 	constructor(i) {
 		this.current_index = i;
 		let current_level_map = level_map[this.current_index];
@@ -34,7 +35,9 @@ class level_singleton{
 			}
 			if (current_level_map[o] == '>') {
 				let b = new exit(new rectangle(x, y, block_size * 2, block_size), true);
-				b.behavior = b.impale;
+			}
+			if (current_level_map[o] == 'L') {
+				left_input_only = true;
 			}
 		}
 		for (let o in current_level_map) {

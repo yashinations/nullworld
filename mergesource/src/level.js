@@ -35,7 +35,7 @@ class level_singleton{
 				b.behavior = b.impale;
 			}
 			if (current_level_map[o] == '>') {
-				let b = new exit(new rectangle(x, y, block_size * 2, block_size), true);
+				let b = new exit(new rectangle(x, y, block_size, block_size), true);
 			}
 			if (current_level_map[o] == 'L') {
 				this.left_input_only = true;

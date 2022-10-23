@@ -16,12 +16,10 @@ class keyboard_input_singleton{
 		//avatar squishes down
 		avatar.duck();
 	}
-	jump = function(){
-		if (avatar.floored && !avatar.jump_held) {
+	jump = function () {
+		if (avatar.floored) {
 			avatar.jumping = true;
 		}
-		avatar.jump_hold = true;
-		avatar.jump_held = true;
 	}
 	action = function(){
 		avatar.action();
@@ -52,6 +50,9 @@ class keyboard_input_singleton{
 	release_trigger = function(e){
 		for (let q in keyboard_input.queue) {
 			if (keyboard_input.queue[q].key == e.key) {
+				if (e.key == " ") {
+					avatar.jumping = false;
+                }
 				delete keyboard_input.queue[q];
 			}
 		}

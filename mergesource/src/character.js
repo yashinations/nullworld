@@ -13,7 +13,7 @@ class character{
 	righted = false;
 	ceilinged = false;
 	floored = false;
-	gravity = 3;
+	gravity = 6;
 	prev_coords;
 	x_delta = 0;
 	verticle_ride = null;
@@ -30,12 +30,20 @@ class character{
 		}
 	}
 	logic_thread = function(that){
-		//somehow make self referential, not object specific NO GLOBALS!	
-		if (!that.floored && that.verticle_ride == null){
+		//somehow make self referential, not object specific NO GLOBALS!
+		if (that.jumping && that.jump_timer <= that.max_jump_timer) {
+			that.rect.y_coord -= that.jump_strength;
+			that.jump_timer++;
+		}
+		if (that.jump_timer >= that.max_jump_timer) {
+			that.jump_timer = 0;
+			that.jumping = false;
+        }
+		if (!that.floored && that.verticle_ride == null && !that.jumping) {
 			that.prev_coords.y_coord = that.rect.y_coord;
 			that.rect.y_coord += that.gravity;
-		}	
-		else {
+		}
+		else if (!that.jumping) {
 			if (that.verticle_ride != null) {
 				that.rect.y_coord = that.verticle_ride.rect.y_coord - that.rect.height;
 			}

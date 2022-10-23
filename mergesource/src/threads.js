@@ -104,17 +104,6 @@ function(){
 			obj_in_question.logic_thread(obj_in_question);
 			//obj_in_question.bounding_boxes.move();
 		}
-		avatar.jump_held = avatar.jump_hold;			
-		if (avatar.jumping && avatar.jump_timer <= avatar.max_jump_timer && avatar.jump_hold) {
-			avatar.rect.y_coord -= avatar.jump_strength;
-			//camera_scroll_y -= avatar.gravity;
-			avatar.jump_timer++;
-		}
-		else {
-			avatar.jump_timer = 0;
-			avatar.jumping = false;
-			avatar.jump_hold = false;
-        }
 	}
 	for (o in tile_map) {
 		let current_block = tile_map[o];

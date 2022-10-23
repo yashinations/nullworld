@@ -7,7 +7,7 @@ let tile4 = 5;
 let spike = 6;
 let swirl = 7;
 let background = 8;
-let background_left = 8;
+let background_left = 9;
 let img_srcs = [
 	"imgs/player_walk.png",
 	"imgs/player_walk_flip.png",

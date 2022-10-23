@@ -1,12 +1,12 @@
 class keyboard_input_singleton{
 	queue = [];
-	left = function(){
-		avatar.move(-1);
+	left = function () {
+		if (!level.left_input_only) {
+			avatar.move(-1);
+		}
 	}
 	right = function () {
-		if (!level.left_input_only) {
-			avatar.move(1);
-		}
+		avatar.move(1);
 	}
 	up = function(){
 		//this just catches input, but i imagine the avatar cranes their next up and the camera peers up

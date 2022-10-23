@@ -3,6 +3,7 @@ class level_singleton{
 	current_index = 0;
 	left_input_only = false;
 	constructor(i) {
+		this.left_input_only = false;
 		this.current_index = i;
 		let current_level_map = level_map[this.current_index];
 		for (let o in current_level_map)
@@ -37,9 +38,18 @@ class level_singleton{
 				let b = new exit(new rectangle(x, y, block_size * 2, block_size), true);
 			}
 			if (current_level_map[o] == 'L') {
-				left_input_only = true;
+				this.left_input_only = true;
 			}
 		}
+		if (this.left_input_only) {
+			renderer.background = new sprite(background_left, null);
+		}
+		else {
+			renderer.background = new sprite(background, null);
+		}
+		renderer.background.frame_width = 500;
+		renderer.background.max_frame_index = Math.floor(renderer.background.src_img.width / renderer.background.frame_width);
+		renderer.background.curr_frame = new rectangle(0, 0, renderer.background.frame_width, renderer.background.src_img.height);
 		for (let o in current_level_map) {
 			let x = (o % (level_width)) * block_size;
 			let y = parseInt(o / (level_width)) * block_size;

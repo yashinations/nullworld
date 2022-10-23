@@ -71,8 +71,5 @@ class character{
 		if(!((this.lefted && direction < 0) || (this.righted && direction > 0))){
 				this.x_delta = direction * 4;
 		}
-		else{
-			this.x_delta = 0;
-		}
 	}
 }

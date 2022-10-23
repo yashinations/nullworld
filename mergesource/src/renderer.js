@@ -26,7 +26,10 @@ class renderer_singleton{
 					continue;
 				}
 				let curr_obj = camera.scope_objects[s];
-				renderer.draw_sprite(ctx,curr_obj.sprites[curr_obj.curr_sprite_index]);
+				renderer.draw_sprite(ctx, curr_obj.sprites[curr_obj.curr_sprite_index]);
+				if (curr_obj.projectile) {
+					renderer.draw_sprite(ctx, curr_obj.projectile.spr);
+                }
 			}
 			//render level art an collision
 			for(let s_itor = 0; s_itor < tile_map.length; s_itor++){

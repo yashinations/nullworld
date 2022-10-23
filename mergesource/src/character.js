@@ -29,7 +29,7 @@ class character{
 			this.sprites.push(new sprite(img_indexes[iii],this));
 		}
 	}
-	logic_thread = function(that){
+	logic_thread(that){
 		//somehow make self referential, not object specific NO GLOBALS!
 		if (that.jumping && that.jump_timer <= that.max_jump_timer) {
 			that.rect.y_coord -= that.jump_strength;

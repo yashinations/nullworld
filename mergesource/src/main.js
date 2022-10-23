@@ -6,7 +6,7 @@ class game{
 		//make into loop
 		keyboard_input = new keyboard_input_singleton();
 		//special case of adding key board triggers
-		//document.addEventListener('keydown', keyboard_input.click_trigger, false);
+		document.addEventListener('keypress', keyboard_input.click_trigger, false);
 		document.addEventListener('keyup', keyboard_input.release_trigger, false);
 		document.addEventListener('keydown', keyboard_input.hold_trigger, false);
 		collision = new singleton_collision();

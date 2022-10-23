@@ -7,6 +7,7 @@ class player extends character{
 	max_jump_timer = 10;
 	jump_timer = 0;
 	jumping = false;
+	projectile;
 	constructor(x,y,w,h,img_indexes){
 		super(x,y,w,h,img_indexes);
 		this.init_x = x;
@@ -18,5 +19,21 @@ class player extends character{
 		avatar.rect.y_coord = avatar.init_y;
 		avatar.floored = false;
 		camera_scroll_y = 0;
+	}
+	action() {
+		if (this.projectile == null) {
+			this.projectile = new projectile();
+		}
+	}
+	logic_thread (that) {
+		super.logic_thread(that);
+		if (that.projectile) {
+			if (that.projectile.rect.x_coord < 512 + 32) {
+				that.projectile.move();
+			}
+			else {
+				that.projectile = null;
+            }
+        }
 	}
 }

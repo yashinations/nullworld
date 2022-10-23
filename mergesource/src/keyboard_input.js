@@ -45,7 +45,7 @@ class keyboard_input_singleton{
 		}
 	}
 	click_trigger = function(e){		
-		//keyboard_input.hold_trigger(e);
+		keyboard_input.trigger(e.key, "click");
 	}
 	release_trigger = function(e){
 		for (let q in keyboard_input.queue) {
@@ -67,7 +67,6 @@ class keyboard_input_singleton{
 		if (!found) {
 			keyboard_input.queue.push({ key: e.key, trigger: "hold" })
 		}
-		//keyboard_input.trigger(e.key,"hold");
 	}
 	key_map = {
 		"a": { action: this.left, click: false, release:false, hold: true},
@@ -75,7 +74,7 @@ class keyboard_input_singleton{
 		"w": { action: this.up, click: false, release: false, hold: false},
 		"s": { action: this.duck, click: false, release: false, hold: false},
 		" ": { action: this.jump, click: false, release: false, hold: true},
-		"\n": { action: this.action, click: false, release: false, hold: false }
+		"z": { action: this.action, click: true, release: false, hold: false }
 	};
 }
 let keyboard_input;

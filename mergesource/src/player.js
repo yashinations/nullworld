@@ -27,8 +27,9 @@ class player extends character{
 	}
 	logic_thread (that) {
 		super.logic_thread(that);
+		//player specific code
 		if (that.projectile) {
-			if (that.projectile.rect.x_coord < 512 + 32) {
+			if (that.projectile.rect.x_coord < canvas.width + block_size && that.projectile.rect.x_coord > 0 - block_size) {
 				that.projectile.move();
 			}
 			else {

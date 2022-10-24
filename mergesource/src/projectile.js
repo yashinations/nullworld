@@ -8,6 +8,9 @@ class projectile extends block{
 		super(r,false);
 		this.draw_rect = r;
 		this.spr = new sprite(projectileimg, this);
+		if (!avatar.facing_left) {
+			this.velocity = -6;
+        }
 	}
 	move = function () {
 		this.rect.x_coord += this.velocity;

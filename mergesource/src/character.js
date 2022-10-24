@@ -17,6 +17,8 @@ class character{
 	prev_coords;
 	x_delta = 0;
 	verticle_ride = null;
+	facing_left = true;
+	velocity = 4;
 	constructor(x,y,w,h,img_indexes){
 		this.rect = new rectangle(x,y,w,h);
 		this.prev_coords = new vertex(x,y);
@@ -31,45 +33,46 @@ class character{
 	}
 	logic_thread(that){
 		//somehow make self referential, not object specific NO GLOBALS!
-		if (that.jumping && that.jump_timer <= that.max_jump_timer) {
-			that.rect.y_coord -= that.jump_strength;
-			that.jump_timer++;
+		if (this.jumping && this.jump_timer <= this.max_jump_timer) {
+			this.rect.y_coord -= this.jump_strength;
+			this.jump_timer++;
 		}
-		if (that.jump_timer >= that.max_jump_timer) {
-			that.jump_timer = 0;
-			that.jumping = false;
+		if (this.jump_timer >= this.max_jump_timer) {
+			this.jump_timer = 0;
+			this.jumping = false;
         }
-		if (!that.floored && that.verticle_ride == null && !that.jumping) {
-			that.prev_coords.y_coord = that.rect.y_coord;
-			that.rect.y_coord += that.gravity;
+		if (!this.floored && this.verticle_ride == null && !this.jumping) {
+			this.prev_coords.y_coord = this.rect.y_coord;
+			this.rect.y_coord += this.gravity;
 		}
-		else if (!that.jumping) {
-			if (that.verticle_ride != null) {
-				that.rect.y_coord = that.verticle_ride.rect.y_coord - that.rect.height;
+		else if (!this.jumping) {
+			if (this.verticle_ride != null) {
+				this.rect.y_coord = this.verticle_ride.rect.y_coord - this.rect.height;
 			}
 			else {
-				while ((that.rect.y_coord + that.rect.height) % block_size != 0) {
-					--that.rect.y_coord;
+				while ((this.rect.y_coord + this.rect.height) % block_size != 0) {
+					--this.rect.y_coord;
 				}
 			}
 		}
-		if(that.x_delta != 0){
-			that.prev_coords.x_coord = that.rect.x_coord;
-			that.rect.x_coord += that.x_delta;	
+		if (this.x_delta != 0){
+			this.prev_coords.x_coord = this.rect.x_coord;
+			this.rect.x_coord += this.x_delta;	
 		}
-		that.x_delta = 0;
-		that.bounding_boxes.move();
+		this.x_delta = 0;
+		this.bounding_boxes.move();
 	}	
 	move = function(direction){	
 		if(direction < 0){
 			this.curr_sprite_index = walk_right;
+			this.facing_left = false;
 		}
 		else{
 			this.curr_sprite_index = walk_left;
+			this.facing_left = true;
 		}
-		//no magic numbers
 		if(!((this.lefted && direction < 0) || (this.righted && direction > 0))){
-				this.x_delta = direction * 4;
+			this.x_delta = this.velocity * direction;
 		}
 	}
 }

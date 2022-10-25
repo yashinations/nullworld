@@ -16,7 +16,7 @@ class level_singleton{
 				let b = new block(r,true);
 			}
 			else{
-				let b = new block(r,false);
+				//let b = new block(r,false);
 			}
 			//add enemies
 			if(current_level_map[o] == 'E'){

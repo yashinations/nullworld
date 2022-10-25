@@ -14,3 +14,13 @@ class block{
 		this.spr = new sprite(2 + parseInt((Math.random() * 100) % 4), this);
 	}
 }
+
+class flipblock extends block {
+	spr;
+	draw_rect;
+	constructor(r, s) {
+		super(r, s);
+		this.draw_rect = r;
+		this.spr = new sprite(6, this);
+	}
+}

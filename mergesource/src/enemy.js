@@ -19,6 +19,21 @@ class enemy extends character{
 		});
 		this.sprites[action_left].end_call = end_call;
 		this.sprites[action_right].end_call = end_call;
+
+	}
+	logic_thread(that) {
+		super.logic_thread(that);
+		//enemy specific code
+		if (that.behavior === that.patrol && saw) {
+			that.behavior = that.follow;
+		}
+		else if (that.behavior === that.follow && !saw) {
+			that.behavior = that.patrol;
+		}
+		if (collision.overlapping(that.rect, avatar.rect)) {
+			that.behavior = obj_in_question.kill;
+			that.behavior(that);
+		}
 	}
 	follow = function(that){
 		if (avatar.rect.x_coord < that.rect.x_coord){

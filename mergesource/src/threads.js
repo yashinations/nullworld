@@ -22,6 +22,9 @@ function can_see(seer, seen) {
 	}
 	return false;
 }
+function collision_sides_check(actor, block) {
+
+}
 let collision_thread =
 function(){
 	if (avatar.alive) {
@@ -44,8 +47,7 @@ function(){
 				let current_block = tile_map[o];
 				if(!current_block.solid){
 					continue;
-				}//move all sight logic elsewhere
-				//sight logic
+				}
 				//just do blocks against avatar for now, come back to the rest later
 				if(collision.overlapping(obj_in_question.bounding_boxes.boxes[left_index],current_block.rect))
 				{
@@ -78,24 +80,10 @@ function(){
 				}
 
 				if (collision.overlapping(obj_in_question.bounding_boxes.boxes[center_core_index], current_block.rect)) {
-					avatar.alive = false;
-					avatar.live();
+					obj_in_question.alive = false;
+					obj_in_question.live();
 				}
 			}
-			
-			if(obj_in_question !== avatar){
-				if(collision.overlapping(obj_in_question.rect,avatar.rect))
-				{	
-					obj_in_question.behavior = obj_in_question.kill;
-					obj_in_question.behavior(obj_in_question);
-				}
-			}
-			if(obj_in_question.behavior === obj_in_question.patrol && saw){
-				obj_in_question.behavior = obj_in_question.follow;
-			}
-			else if(obj_in_question.behavior === obj_in_question.follow && !saw){
-				obj_in_question.behavior = obj_in_question.patrol;
-			}	
 			if(obj_in_question.behavior === obj_in_question.patrol){
 				obj_in_question.turn = turn_side || turn_floor;
 			}

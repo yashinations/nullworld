@@ -21,16 +21,16 @@ class renderer_singleton{
 			ctx.clearRect(0,0,canvas.width,canvas.height);		
 			ctx.drawImage(renderer.background.src_img, renderer.background.curr_frame_index * renderer.background.frame_width, 0, renderer.background.frame_width, renderer.background.src_img.height, 0, 0, canvas.width, canvas.height);//render pcs and npcs
 			renderer.background.next_frame();
-			for (let s in camera.scope_objects){
-				if(camera.scope_objects[s] === avatar && !avatar.alive){
-					continue;
-				}
-				let curr_obj = camera.scope_objects[s];
-				renderer.draw_sprite(ctx, curr_obj.sprites[curr_obj.curr_sprite_index]);
-				if (curr_obj.projectile) {
-					renderer.draw_sprite(ctx, curr_obj.projectile.spr);
-                }
-			}
+			//for (let s in camera.scope_objects){
+				//if(camera.scope_objects[s] === avatar && !avatar.alive){
+				//	continue;
+				//}
+				//let curr_obj = camera.scope_objects[s];
+			renderer.draw_sprite(ctx, avatar.sprites[avatar.curr_sprite_index]);
+			if (avatar.projectile) {
+				renderer.draw_sprite(ctx, avatar.projectile.spr);
+            }
+			//}
 			for(let s_itor = 0; s_itor < tile_map.length; s_itor++){
 				//make make more sense
 				let b = tile_map[s_itor];

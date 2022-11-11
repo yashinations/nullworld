@@ -1,4 +1,23 @@
-let collision_thread = 
+function can_see(seer, seen) {
+	let has_saw = false;
+	let sight_height_limit = 50;
+	let sight_limit = 200;
+	let lx1 = seen.rect.x_coord;
+	let ly1 = seen.rect.y_coord + (seen.rect.height / 2);
+	let lx2 = seer.rect.x_coord;
+	let ly2 = seer.rect.y_coord + (seer.rect.height / 2);
+	let a = lx1 - lx2;
+	let b = ly1 - ly2;
+	if (b < sight_height_limit) {
+		let c2 = Math.pow(a, 2) + Math.pow(b, 2);
+		let c = Math.sqrt(c2);
+		if (c < sight_limit && !yash_math.rect_line(current_block.rect, lx1, ly1, lx2, ly2)) {
+			has_saw = true;
+		}
+	}
+	return has_saw;
+}
+let collision_thread =
 function(){
 	if (avatar.alive) {
 		for (q in keyboard_input.queue) {
@@ -21,29 +40,7 @@ function(){
 					continue;
 				}//move all sight logic elsewhere
 				//sight logic
-				if(obj_in_question !== avatar){
-				  let lx1 = obj_in_question.rect.x_coord;
-				  let ly1 = obj_in_question.rect.y_coord + (obj_in_question.rect.height / 2);
-				  let lx2 = avatar.rect.x_coord;
-				  let ly2 = avatar.rect.y_coord + (avatar.rect.height / 2);
-				  let a = lx1 - lx2;
-				  let b = ly1 - ly2;
-				  if(b < 50){
-					  let c2 = Math.pow(a,2) + Math.pow(b,2);
-					  let c = Math.sqrt(c2);
-					  if(c > 200){
-						saw = false;
-					  }
-					  else{
-						  if (yash_math.rect_line(current_block.rect,lx1,ly1,lx2,ly2)){
-								saw = false;
-						  }
-					   }
-				  }				
-				  else{
-					saw = false;
-				  }
-				}
+				saw = can_see(avatar, obj_in_question);
 				//just do blocks against avatar for now, come back to the rest later
 				if(collision.overlapping(obj_in_question.bounding_boxes.boxes[left_index],current_block.rect))
 				{

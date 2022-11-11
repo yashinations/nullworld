@@ -53,13 +53,15 @@ function collision_sides_check(actor, current_block) {
 		actor.alive = false;
 		actor.live();
 	}
+	return hit_object;
 }
 let collision_thread =
 function(){
 	if (avatar.alive) {
 		for (q in keyboard_input.queue) {
 			keyboard_input.trigger(keyboard_input.queue[q].key, keyboard_input.queue[q].trigger);
-		}		
+		}	
+		
 		for (let s in camera.scope_objects){
 			let obj_in_question = camera.scope_objects[s];
 			//make better make all this better
@@ -67,20 +69,21 @@ function(){
 			//let saw = false;
 			//let kill = false;
 			//saw = can_see(avatar, obj_in_question);
+			let hit_object;
 			for (o in tile_map){
 				let current_block = tile_map[o];
 				if(!current_block.solid){
 					continue;
 				}				
-				collision_sides_check(obj_in_question, current_block);
+				hit_object = collision_sides_check(obj_in_question, current_block);
 			}
 			if(obj_in_question.behavior === obj_in_question.patrol){
 				obj_in_question.turn = turn_side || turn_floor;
 			}
-			obj_in_question.lefted = lefted;
-			obj_in_question.righted = righted;
-			obj_in_question.floored = floored;
-			obj_in_question.grounded = grounded;
+			obj_in_question.lefted = hit_object.lefted;
+			obj_in_question.righted = hit_object.righted;
+			obj_in_question.floored = hit_object.floored;
+			obj_in_question.grounded = hit_object.grounded;
 			obj_in_question.logic_thread(obj_in_question);
 			//obj_in_question.bounding_boxes.move();
 		}

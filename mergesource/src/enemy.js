@@ -30,6 +30,9 @@ class enemy extends character{
 		else if (that.behavior === that.follow && !saw) {
 			that.behavior = that.patrol;
 		}
+		//if (that.behavior === that.patrol) {
+		//	that.turn = turn_side || turn_floor;
+		//}
 		if (collision.overlapping(that.rect, avatar.rect)) {
 			that.behavior = obj_in_question.kill;
 			that.behavior(that);

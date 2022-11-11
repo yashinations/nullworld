@@ -22,8 +22,37 @@ function can_see(seer, seen) {
 	}
 	return false;
 }
-function collision_sides_check(actor, block) {
+function collision_sides_check(actor, current_block) {
+	let hit_object = { floored: false, lefted: false, righted: false, turn_side: false, turn_floor: false, grounded: false };
+	if (collision.overlapping(actor.bounding_boxes.boxes[left_index], current_block.rect)) {
+		hit_object.lefted = true;
+		hit_object.turn_side = true;
+	}
+	if (collision.overlapping(actor.bounding_boxes.boxes[right_index], current_block.rect)) {
+		hit_object.righted = true;
+		hit_object.turn_side = true;
+	}
+	if (collision.overlapping(actor.bounding_boxes.boxes[floor_index], current_block.rect)) {
+		hit_object.floored = true;
+		if (actor === avatar && current_block.behavior == null) {
+			hit_object.grounded = true;
+		}
+	}
+	if (collision.overlapping(actor.bounding_boxes.boxes[future_left_floor_index], current_block.rect)) {
+		if (actor.patrol_left) {
+			hit_object.turn_floor = false;
+		}
+	}
+	if (collision.overlapping(actor.bounding_boxes.boxes[future_right_floor_index], current_block.rect)) {
+		if (obj_in_question.patrol_right) {
+			hit_object.turn_floor = false;
+		}
+	}
 
+	if (collision.overlapping(actor.bounding_boxes.boxes[center_core_index], current_block.rect)) {
+		actor.alive = false;
+		actor.live();
+	}
 }
 let collision_thread =
 function(){
@@ -34,55 +63,16 @@ function(){
 		for (let s in camera.scope_objects){
 			let obj_in_question = camera.scope_objects[s];
 			//make better make all this better
-			let floored = false;
-			let lefted = false;
-			let righted = false;
-			let turn_side = false;
-			let turn_floor = true;
-			let saw = false;
-			let kill = false;
-			let grounded = false;
-			saw = can_see(avatar, obj_in_question);
+
+			//let saw = false;
+			//let kill = false;
+			//saw = can_see(avatar, obj_in_question);
 			for (o in tile_map){
 				let current_block = tile_map[o];
 				if(!current_block.solid){
 					continue;
-				}
-				//just do blocks against avatar for now, come back to the rest later
-				if(collision.overlapping(obj_in_question.bounding_boxes.boxes[left_index],current_block.rect))
-				{
-					lefted = true;
-					turn_side = true;
-				}
-				if(collision.overlapping(obj_in_question.bounding_boxes.boxes[right_index],current_block.rect))
-				{
-					righted = true;
-					turn_side = true;
-				}
-				if(collision.overlapping(obj_in_question.bounding_boxes.boxes[floor_index],current_block.rect))
-				{
-					floored = true;
-					if(obj_in_question === avatar && current_block.behavior == null){
-						grounded = true;
-					}
-				}								
-				if(collision.overlapping(obj_in_question.bounding_boxes.boxes[future_left_floor_index],current_block.rect))
-				{
-					if(obj_in_question.patrol_left){
-						turn_floor = false;
-					}
-				}	
-				if(collision.overlapping(obj_in_question.bounding_boxes.boxes[future_right_floor_index],current_block.rect))
-				{	
-					if(obj_in_question.patrol_right){
-						turn_floor = false;
-					}
-				}
-
-				if (collision.overlapping(obj_in_question.bounding_boxes.boxes[center_core_index], current_block.rect)) {
-					obj_in_question.alive = false;
-					obj_in_question.live();
-				}
+				}				
+				collision_sides_check(obj_in_question, current_block);
 			}
 			if(obj_in_question.behavior === obj_in_question.patrol){
 				obj_in_question.turn = turn_side || turn_floor;

@@ -1,5 +1,4 @@
 function can_see(seer, seen) {
-	let has_saw = false;
 	let sight_height_limit = 50;
 	let sight_limit = 200;
 	let lx1 = seen.rect.x_coord;
@@ -11,11 +10,17 @@ function can_see(seer, seen) {
 	if (b < sight_height_limit) {
 		let c2 = Math.pow(a, 2) + Math.pow(b, 2);
 		let c = Math.sqrt(c2);
-		if (c < sight_limit && !yash_math.rect_line(current_block.rect, lx1, ly1, lx2, ly2)) {
-			has_saw = true;
+		if (c < sight_limit) {
+			for (o in tile_map) {
+				let current_block = tile_map[o];
+				if (yash_math.rect_line(current_block.rect, lx1, ly1, lx2, ly2)) {
+					return false;
+				}
+			}
+			return true;
 		}
 	}
-	return has_saw;
+	return false;
 }
 let collision_thread =
 function(){
@@ -34,13 +39,13 @@ function(){
 			let saw = false;
 			let kill = false;
 			let grounded = false;
+			saw = can_see(avatar, obj_in_question);
 			for (o in tile_map){
 				let current_block = tile_map[o];
 				if(!current_block.solid){
 					continue;
 				}//move all sight logic elsewhere
 				//sight logic
-				saw = can_see(avatar, obj_in_question);
 				//just do blocks against avatar for now, come back to the rest later
 				if(collision.overlapping(obj_in_question.bounding_boxes.boxes[left_index],current_block.rect))
 				{

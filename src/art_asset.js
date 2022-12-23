@@ -11,6 +11,7 @@ let background_left = 9;
 let projectileimg = 10;
 let projectileright = 11;
 let flipswitchimg = 12;
+let idle_spr = 13;
 let img_srcs = [
 	"imgs/player_walk.png",
 	"imgs/player_walk_flip.png",
@@ -24,7 +25,8 @@ let img_srcs = [
 	"imgs/backgroundleft.png",
 	"imgs/projectile.png",
 	"imgs/projectileright.png",	
-	"imgs/flipswitch.png"
+	"imgs/flipswitch.png",	
+	"imgs/player_idle.png"
 ]
 class art_asset_singleton{
 	imgs = [];

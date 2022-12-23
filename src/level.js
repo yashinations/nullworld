@@ -27,7 +27,7 @@ class level_singleton{
 			}
 			//add user			
 			if(current_level_map[o] == 'P'){
-				let indexs = [avatar_walk_left,avatar_walk_right];
+				let indexs = [avatar_walk_left, avatar_walk_right, idle_spr];
 				avatar = new player(x,y - 15,25,50,indexs);
 			}
 			if (current_level_map[o] == '^') {

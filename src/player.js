@@ -9,7 +9,7 @@ class player extends character{
 	jumping = false;
 	projectile;
 	constructor(x,y,w,h,img_indexes){
-		super(x,y,w,h,img_indexes);
+		super(x, y, w, h, img_indexes);
 		this.init_x = x;
 		this.init_y = y;
 	}

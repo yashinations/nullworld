@@ -1,7 +1,7 @@
 let walk_left = 0;
 let walk_right = 1;
-let action_left = 2;
-let action_right = 3;
+let idle = 2;
+//let action_right = 3;
 class character{
 	bounding_boxes;
 	hit_boxes = [];
@@ -55,10 +55,13 @@ class character{
 				}
 			}
 		}
-		if (this.x_delta != 0){
+		if (this.x_delta != 0) {
 			this.prev_coords.x_coord = this.rect.x_coord;
-			this.rect.x_coord += this.x_delta;	
+			this.rect.x_coord += this.x_delta;
 		}
+		else {
+			this.curr_sprite_index = idle;
+        }
 		this.x_delta = 0;
 		this.bounding_boxes.move();
 	}	

@@ -5,13 +5,13 @@ class sprite{
 	src_img;
 	owner;
 	end_call;
-	constructor(img_index,owner){
+	constructor(img_index, owner) {
 		this.src_img = art_assets.imgs[img_index];
 		this.owner = owner;
 		//let data = get_image_data(this.src_img);
 		//this.set_frame_width(data.data);
 		//replace this logic
-		this.frame_width = 20;
+		this.frame_width = 64;
 		this.max_frame_index = Math.floor(this.src_img.width / this.frame_width);
 		this.curr_frame = new rectangle(0, 0, this.frame_width, this.src_img.height);
 	}

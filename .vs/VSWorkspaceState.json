@@ -2,10 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\imgs",
-    "\\mergesource",
-    "\\mergesource\\imgs",
-    "\\mergesource\\src"
+    "\\src"
   ],
-  "SelectedNode": "\\mergesource\\src\\flip_switch.js",
+  "SelectedNode": "\\src\\sprite.js",
   "PreviewInSolutionExplorer": false
 }

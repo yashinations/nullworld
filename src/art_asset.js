@@ -1,49 +1,46 @@
-let avatar_walk_left = 0;
-let avatar_walk_right = 1;
-let tile1 = 2;
-let tile2 = 3;
-let tile3 = 4;
-let tile4 = 5;
-let spike = 6;
-let swirl = 7;
-let background = 8;
-let background_left = 9;
-let projectileimg = 10;
-let projectileright = 11;
-let flipswitchimg = 12;
-let idle_spr = 13;
-let img_srcs = [
-	"imgs/player_walk.png",
-	"imgs/player_walk_flip.png",
-	"imgs/tile1.png",
-	"imgs/tile2.png",
-	"imgs/tile3.png",
-	"imgs/tile4.png",
-	"imgs/spike.png",
-	"imgs/exit.png",
-	"imgs/background.png",
-	"imgs/backgroundleft.png",
-	"imgs/projectile.png",
-	"imgs/projectileright.png",	
-	"imgs/flipswitch.png",	
-	"imgs/player_idle.png"
-]
 class art_asset_singleton{
+	img_srcs = [
+		{ class_name: "player", type_name: "move", sub_type: "idle", location: "imgs/player_walk.png" },
+		{ class_name: "player", type_name: "move", sub_type: "right", location: "imgs/player_walk_flip.png" },
+		{ class_name: "player", type_name: "move", sub_type: "left", location: "imgs/player_walk_flip.png" },
+		{ class_name: "projectile", type_name: "projectile", subtype: "right", location: "imgs/projectile.png" },
+		{ class_name: "projectile", type_name: "projectile", subtype: "left", location: "imgs/projectileright.png" },
+		{ class_name: "block", type_name: "block", sub_type: "0", location: "imgs/tile1.png" },
+		{ class_name: "block", type_name: "block", sub_type: "90", location: "imgs/tile2.png" },
+		{ class_name: "block", type_name: "block", sub_type: "180", location: "imgs/tile3.png" },
+		{ class_name: "block", type_name: "block", sub_type: "270", location: "imgs/tile4.png" },
+		{ class_name: "spike", type_name: "spike", sub_type: "spike", location: "imgs/spike.png" },
+		{ class_name: "exit", type_name: "exit", sub_type: "exit", location: "imgs/exit.png" },
+		{ class_name: "flipswitch", type_name: "flipswitch", sub_type: "flipswitch", location: "imgs/flipswitch.png" },
+		{ class_name: "background", type_name: "background", sub_type: "background", location: "imgs/background.png" },
+		{ class_name: "background", type_name: "background", sub_type: "left", location: "imgs/backgroundleft.png" }
+	];
 	imgs = [];
-	load_init = function(str_array){
-		this.load(str_array,0);
+	load_init = function(){
+		this.load(0);
 	}
-	//functions for recursively loading images
-	load = function(str_array, s){
-		if (s < str_array.length){
+	//function for recursively loading images
+	load = function (current_index){
+		if (s < this.img_srcs.length){
 			let i = new Image();
-			i.src = str_array[s]
-			art_assets.imgs.push(i);
-			i.onload = (function(){art_assets.load(str_array,s + 1)});
+			i.src = this.img_srcs[current_index].location;
+			this.imgs.push(i);
+			i.onload = (function () { art_assets.load(current_index + 1)});
 		}
 		else{
 			init_game()
 		}
 	}
+	find = function (class_name, type_name, sub_type) {
+		let i;
+		for (i in this.img_srcs) {
+			if (this.img_srcs[i].class_name == class_name &&
+				this.img_srcs[i].type_name == type_name &&
+				this.img_srcs[i].sub_type == sub_type) {
+				break;
+            }
+		}
+		return this.imgs[i];
+    }
 }
 let art_assets = new art_asset_singleton();

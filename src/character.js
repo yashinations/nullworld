@@ -27,7 +27,7 @@ class character{
 		camera.scope_objects.push(this);
 	}
 	set_sprite = function(img_indexes){
-		for(let iii in img_indexes){
+		for (let iii in img_indexes){
 			this.sprites.push(new sprite(img_indexes[iii],this));
 		}
 	}

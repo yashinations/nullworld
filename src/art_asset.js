@@ -21,7 +21,7 @@ class art_asset_singleton{
 	}
 	//function for recursively loading images
 	load = function (current_index){
-		if (s < this.img_srcs.length){
+		if (current_index < this.img_srcs.length){
 			let i = new Image();
 			i.src = this.img_srcs[current_index].location;
 			this.imgs.push(i);
@@ -40,7 +40,7 @@ class art_asset_singleton{
 				break;
             }
 		}
-		return this.imgs[i];
+		return i;
     }
 }
 let art_assets = new art_asset_singleton();

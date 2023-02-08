@@ -19,15 +19,9 @@ class level_singleton{
 				//let b = new block(r,false);
 			}
 			//add enemies
-			if(current_level_map[o] == 'E'){
-				let indexs = [enemy_walk_left,enemy_walk_right,enemy_kill_left,enemy_kill_right];
-				let e = new enemy((o % (level_width)) * block_size,parseInt(o / (level_width)) * block_size,31,63,indexs);
-				e.behavior = e.patrol;
-				e.behavior(e);
-			}
-			//add user			
+			//E
 			if(current_level_map[o] == 'P'){
-				let indexs = [avatar_walk_left, avatar_walk_right, idle_spr];
+				let indexs = [art_assets.find("player", "move", "left"), art_assets.find("player", "move", "right"), art_assets.find("player", "move", "idle")];
 				avatar = new player(x,y - 15,25,50,indexs);
 			}
 			if (current_level_map[o] == '^') {
@@ -42,10 +36,10 @@ class level_singleton{
 			}
 		}
 		if (this.left_input_only) {
-			renderer.background = new sprite(background_left, null);
+			renderer.background = new sprite(art_assets.find("background", "background", "left"), null);
 		}
 		else {
-			renderer.background = new sprite(background, null);
+			renderer.background = new sprite(art_assets.find("background", "background", "background"), null);
 		}
 		renderer.background.frame_width = 500;
 		renderer.background.max_frame_index = Math.floor(renderer.background.src_img.width / renderer.background.frame_width);

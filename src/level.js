@@ -25,7 +25,7 @@ class level_singleton{
 				avatar = new player(x,y - 15,25,50,indexs);
 			}
 			if (current_level_map[o] == '^') {
-				let b = new hazard(new rectangle(x, y + 10, block_size * 2, block_size - 10), true);
+				let b = new hazard(new rectangle(x, y + 10, block_size, block_size), true);
 				b.behavior = b.impale;
 			}
 			if (current_level_map[o] == '>') {

@@ -35,7 +35,7 @@ class renderer_singleton{
 				//make make more sense
 				let b = tile_map[s_itor];
 				//if(b.solid){
-				ctx.drawImage(b.spr.src_img, b.spr.curr_frame_index * b.spr.frame_width, 0, b.spr.frame_width, b.spr.src_img.height, (b.rect.x_coord * multiplier) - (camera_scroll_x * multiplier), (b.rect.y_coord * multiplier) - (camera_scroll_y * multiplier), block_size * multiplier, b.rect.height * multiplier);
+				ctx.drawImage(b.spr.src_img, b.spr.curr_frame_index * b.spr.frame_width, 0, 64, 64, (b.rect.x_coord * multiplier) - (camera_scroll_x * multiplier), (b.rect.y_coord * multiplier) - (camera_scroll_y * multiplier), b.rect.width * multiplier, b.rect.height * multiplier);
 				b.spr.next_frame();
 				//}
 			}

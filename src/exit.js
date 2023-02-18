@@ -4,7 +4,7 @@ class exit extends block{
     constructor(r,s){
         super(r, s);
         this.draw_rect = r;
-        this.spr = new sprite(7, this);
+        this.spr = new sprite(parseInt(art_assets.find("exit", "exit", "exit")), this);
     }
     advance = function () {
         let current_index = level.current_index + 1;

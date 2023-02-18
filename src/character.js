@@ -1,6 +1,3 @@
-let walk_left = 0;
-let walk_right = 1;
-let idle = 2;
 //let action_right = 3;
 class character{
 	bounding_boxes;
@@ -19,17 +16,23 @@ class character{
 	verticle_ride = null;
 	facing_left = true;
 	velocity = 4;
+	walk_left_img_index;
+	walk_right_img_index;
+	idle_img_index;
 	constructor(x,y,w,h,img_indexes){
 		this.rect = new rectangle(x,y,w,h);
 		this.prev_coords = new vertex(x,y);
-		this.bounding_boxes = new bounding(this);	
+		this.bounding_boxes = new bounding(this);
+		this.walk_left_img_index = 0;
+		this.walk_right_img_index = 1;
+		this.idle_img_index = 2;
 		this.set_sprite(img_indexes);
 		camera.scope_objects.push(this);
 	}
 	set_sprite = function(img_indexes){
-		for (let iii in img_indexes){
-			this.sprites.push(new sprite(img_indexes[iii],this));
-		}
+		this.sprites[0] = new sprite(img_indexes[0], this);
+		this.sprites[1] = new sprite(img_indexes[1], this);
+		this.sprites[2] = new sprite(img_indexes[2], this);
 	}
 	logic_thread(that){
 		//somehow make self referential, not object specific NO GLOBALS!
@@ -60,18 +63,18 @@ class character{
 			this.rect.x_coord += this.x_delta;
 		}
 		else {
-			this.curr_sprite_index = idle;
+			this.curr_sprite_index = this.idle_img_index;
         }
 		this.x_delta = 0;
 		this.bounding_boxes.move();
 	}	
 	move = function(direction){	
 		if(direction < 0){
-			this.curr_sprite_index = walk_right;
+			this.curr_sprite_index = this.walk_right_img_index;
 			this.facing_left = false;
 		}
 		else{
-			this.curr_sprite_index = walk_left;
+			this.curr_sprite_index = this.walk_left_img_index;
 			this.facing_left = true;
 		}
 		if(!((this.lefted && direction < 0) || (this.righted && direction > 0))){

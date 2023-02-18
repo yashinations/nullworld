@@ -6,7 +6,7 @@ class sprite{
 	owner;
 	end_call;
 	constructor(img_index, owner) {
-		this.src_img = art_assets.imgs[img_index];
+		this.src_img = art_assets.imgs[img_index].img;
 		this.owner = owner;
 		console.log(img_index);
 		let data = get_image_data(this.src_img);

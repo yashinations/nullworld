@@ -11,7 +11,7 @@ class block{
 		this.solid = s;
 		//add to available blocks
 		tile_map.push(this);
-		this.spr = new sprite(parseInt(art_assets.find("block", "block", "0")) + (parseInt((Math.random() * 100) % 4)), this);
+		this.spr = new sprite(parseInt(art_assets.find("block", "block", "0")) + (parseInt((Math.random() * 100) % 3)), this);
 	}
 }
 
@@ -21,6 +21,6 @@ class flipblock extends block {
 	constructor(r, s) {
 		super(r, s);
 		this.draw_rect = r;
-		this.spr = new sprite(6, this);
+		this.spr = new sprite(parseInt(art_assets.find("flipswitch", "flipswitch", "flipswitch")), this);
 	}
 }

@@ -1,8 +1,8 @@
 class art_asset_singleton{
-	img_srcs = [
-		{ class_name: "player", type_name: "move", sub_type: "idle", location: "imgs/player_walk.png" },
+	imgs = [
+		{ class_name: "player", type_name: "move", sub_type: "idle", location: "imgs/player_idle.png" },
 		{ class_name: "player", type_name: "move", sub_type: "right", location: "imgs/player_walk_flip.png" },
-		{ class_name: "player", type_name: "move", sub_type: "left", location: "imgs/player_walk_flip.png" },
+		{ class_name: "player", type_name: "move", sub_type: "left", location: "imgs/player_walk.png" },
 		{ class_name: "projectile", type_name: "projectile", subtype: "right", location: "imgs/projectile.png" },
 		{ class_name: "projectile", type_name: "projectile", subtype: "left", location: "imgs/projectileright.png" },
 		{ class_name: "block", type_name: "block", sub_type: "0", location: "imgs/tile1.png" },
@@ -15,16 +15,15 @@ class art_asset_singleton{
 		{ class_name: "background", type_name: "background", sub_type: "background", location: "imgs/background.png" },
 		{ class_name: "background", type_name: "background", sub_type: "left", location: "imgs/backgroundleft.png" }
 	];
-	imgs = [];
 	load_init = function(){
 		this.load(0);
 	}
 	//function for recursively loading images
 	load = function (current_index){
-		if (current_index < this.img_srcs.length){
+		if (current_index < this.imgs.length){
 			let i = new Image();
-			i.src = this.img_srcs[current_index].location;
-			this.imgs.push(i);
+			i.src = this.imgs[current_index].location;
+			this.imgs[current_index].img = i;
 			i.onload = (function () { art_assets.load(current_index + 1)});
 		}
 		else{
@@ -33,10 +32,10 @@ class art_asset_singleton{
 	}
 	find = function (class_name, type_name, sub_type) {
 		let i;
-		for (i in this.img_srcs) {
-			if (this.img_srcs[i].class_name == class_name &&
-				this.img_srcs[i].type_name == type_name &&
-				this.img_srcs[i].sub_type == sub_type) {
+		for (i in this.imgs) {
+			if (this.imgs[i].class_name == class_name &&
+				this.imgs[i].type_name == type_name &&
+				this.imgs[i].sub_type == sub_type) {
 				break;
             }
 		}
